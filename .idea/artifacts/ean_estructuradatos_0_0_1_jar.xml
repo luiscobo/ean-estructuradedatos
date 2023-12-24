@@ -1,0 +1,13 @@
+<component name="ArtifactManager">
+  <artifact type="jar" name="ean-estructuradatos-0.0.1:jar">
+    <output-path>$PROJECT_DIR$/out/artifacts/ean_estructuradatos_0_0_1_jar</output-path>
+    <root id="archive" name="ean-estructuradatos-0.0.1_jar.jar">
+      <element id="archive" name="ean-estructuradatos-0.0.1.jar">
+        <element id="module-output" name="newEanLib" />
+        <element id="module-test-output" name="newEanLib" />
+      </element>
+      <element id="library" level="module" name="JUnit5.8.1" module-name="newEanLib" />
+      <element id="library" level="project" name="KotlinJavaRuntime" />
+    </root>
+  </artifact>
+</component>
