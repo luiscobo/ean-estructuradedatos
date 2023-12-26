@@ -2,7 +2,7 @@
  * ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
  * Universidad EAN (Bogotá - Colombia)
  * Departamento de Sistemas
- * Faculta de Ingeniería
+ * Facultad de Ingeniería
  *
  * Proyecto EAN Kotlin Estructura de Datos
  * @author Luis Cobo (lacobo@universidadean.edu.co)
@@ -143,7 +143,7 @@ class Arreglo<T>(tamañoInicial: Int) {
     }
 
     /**
-     * Retorna un arreglo que contiene todo los elementos del arreglo
+     * Retorna un arreglo que contiene todos los elementos del arreglo
      * original y el elemento dado al final
      */
     operator fun plus(elemento: T): Arreglo<T> {

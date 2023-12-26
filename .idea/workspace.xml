@@ -1,11 +1,20 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <project version="4">
+  <component name="ArtifactsWorkspaceSettings">
+    <artifacts-to-build>
+      <artifact name="ean-estructuradatos-0.0.1:jar" />
+    </artifacts-to-build>
+  </component>
   <component name="AutoImportSettings">
     <option name="autoReloadType" value="SELECTIVE" />
   </component>
   <component name="ChangeListManager">
     <list default="true" id="6bbf69c3-c92c-4814-a03f-267974052390" name="Changes" comment="Versión 0.0.1 = Arreglos">
-      <change afterPath="$PROJECT_DIR$/src/META-INF/MANIFEST.MF" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/ean/estructuradedatos/Lista.kt" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/ean/estructuradedatos/ListaConArreglos.kt" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/ean/estructuradedatos/Arreglo.kt" beforeDir="false" afterPath="$PROJECT_DIR$/src/ean/estructuradedatos/Arreglo.kt" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/test/ean/estructuradedatos/ArregloTest.kt" beforeDir="false" afterPath="$PROJECT_DIR$/test/ean/estructuradedatos/ArregloTest.kt" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -15,17 +24,18 @@
   <component name="FileTemplateManagerImpl">
     <option name="RECENT_TEMPLATES">
       <list>
-        <option value="Kotlin Class" />
         <option value="JUnit5 Test Class" />
+        <option value="Kotlin Interface" />
+        <option value="Kotlin Class" />
       </list>
     </option>
   </component>
   <component name="Git.Settings">
     <option name="RECENT_GIT_ROOT_PATH" value="$PROJECT_DIR$" />
   </component>
-  <component name="ProjectColorInfo"><![CDATA[{
-  "associatedIndex": 8
-}]]></component>
+  <component name="ProjectColorInfo">{
+  &quot;associatedIndex&quot;: 8
+}</component>
   <component name="ProjectId" id="2ZxtpYFEfbdSPxVCK7d8cETjZME" />
   <component name="ProjectLevelVcsManager" settingsEditedManually="true">
     <ConfirmationsSetting value="2" id="Add" />
@@ -40,11 +50,13 @@
     "Downloaded.Files.Path.Enabled": "true",
     "JUnit.ArregloTest (1).executor": "Run",
     "JUnit.ArregloTest.executor": "Run",
+    "JUnit.ArregloTest.prueba2.executor": "Run",
     "Repository.Attach.Annotations": "false",
     "Repository.Attach.JavaDocs": "false",
     "Repository.Attach.Sources": "false",
     "RunOnceActivity.OpenProjectViewOnStart": "true",
     "RunOnceActivity.ShowReadmeOnStart": "true",
+    "SHARE_PROJECT_CONFIGURATION_FILES": "true",
     "com.intellij.testIntegration.createTest.CreateTestDialog.defaultLibrary": "JUnit5",
     "com.intellij.testIntegration.createTest.CreateTestDialog.defaultLibrarySuperClass.JUnit5": "",
     "ignore.virus.scanning.warn.message": "true",
@@ -57,7 +69,7 @@
     "project.structure.last.edited": "Artifacts",
     "project.structure.proportion": "0.15",
     "project.structure.side.proportion": "0.2",
-    "settings.editor.selected.configurable": "Errors",
+    "settings.editor.selected.configurable": "preferences.sourceCode.Kotlin",
     "vue.rearranger.settings.migration": "true"
   }
 }]]></component>
@@ -69,7 +81,7 @@
       <recent name="ean.estructuradedatos" />
     </key>
   </component>
-  <component name="RunManager" selected="JUnit.ArregloTest (1)">
+  <component name="RunManager" selected="JUnit.ArregloTest.prueba2">
     <configuration name="ArregloTest (1)" type="JUnit" factoryName="JUnit" temporary="true" nameIsGenerated="true">
       <module name="newEanLib" />
       <extension name="coverage">
@@ -100,8 +112,25 @@
         <option name="Make" enabled="true" />
       </method>
     </configuration>
+    <configuration name="ArregloTest.prueba2" type="JUnit" factoryName="JUnit" temporary="true" nameIsGenerated="true">
+      <module name="newEanLib" />
+      <extension name="coverage">
+        <pattern>
+          <option name="PATTERN" value="ean.estructuradedatos.*" />
+          <option name="ENABLED" value="true" />
+        </pattern>
+      </extension>
+      <option name="PACKAGE_NAME" value="ean.estructuradedatos" />
+      <option name="MAIN_CLASS_NAME" value="ean.estructuradedatos.ArregloTest" />
+      <option name="METHOD_NAME" value="prueba2" />
+      <option name="TEST_OBJECT" value="method" />
+      <method v="2">
+        <option name="Make" enabled="true" />
+      </method>
+    </configuration>
     <recent_temporary>
       <list>
+        <item itemvalue="JUnit.ArregloTest.prueba2" />
         <item itemvalue="JUnit.ArregloTest (1)" />
         <item itemvalue="JUnit.ArregloTest" />
       </list>
@@ -123,7 +152,9 @@
       <option name="number" value="Default" />
       <option name="presentableId" value="Default" />
       <updated>1703375743443</updated>
-      <workItem from="1703375744493" duration="10713000" />
+      <workItem from="1703375744493" duration="10884000" />
+      <workItem from="1703388867480" duration="12000" />
+      <workItem from="1703524409585" duration="12279000" />
     </task>
     <task id="LOCAL-00001" summary="Versión 0.0.1 = Arreglos">
       <option name="closed" value="true" />
@@ -133,7 +164,15 @@
       <option name="project" value="LOCAL" />
       <updated>1703387549365</updated>
     </task>
-    <option name="localTasksCounter" value="2" />
+    <task id="LOCAL-00002" summary="Versión 0.0.1 = Arreglos">
+      <option name="closed" value="true" />
+      <created>1703387924708</created>
+      <option name="number" value="00002" />
+      <option name="presentableId" value="LOCAL-00002" />
+      <option name="project" value="LOCAL" />
+      <updated>1703387924708</updated>
+    </task>
+    <option name="localTasksCounter" value="3" />
     <servers />
   </component>
   <component name="TypeScriptGeneratedFilesManager">
