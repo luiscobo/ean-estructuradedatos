@@ -283,12 +283,13 @@ class ListaConArreglos<T>() : Lista<T> {
 
     override fun equals(other: Any?): Boolean {
         if (this === other) return true
-        if (javaClass != other?.javaClass) return false
 
-        other as ListaConArreglos<*>
+        other as Lista<T>
 
-        if (tamLista != other.tamLista) return false
-        if (info != other.info) return false
+        if (tam != other.tam) return false
+        for (i in indices) {
+            if (info[i] != other[i]) return false
+        }
 
         return true
     }

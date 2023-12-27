@@ -126,4 +126,62 @@ class ArregloTest {
         val l2 = ListaConArreglos(1, 2, 3, 4)
         assertTrue(l1.similar(l2))
     }
+
+    @Test
+    fun prueba3() {
+        // Llenar con aleatorios
+        val random = Random(45)
+        val lst3 = ListaConNodosDoblementeEncadenados<Int>()
+        val l4 = ListaConArreglos<Int>()
+        repeat(120) {
+            val x = random.nextInt()
+            lst3.agregarAlFinal(x)
+            l4.agregarAlFinal(x)
+        }
+        println(lst3.tam)
+        println(lst3.primero)
+        println(lst3.ultimaPosicion)
+        println("Elemento 50 -> ${lst3[50]}")
+        println("Elemento 51 -> ${lst3[51]}")
+        assertTrue(lst3 == l4)
+
+        val l1 = ListaConNodosDoblementeEncadenados(1, 4, 2, 3)
+        val l2 = ListaConArreglos(1, 2, 3, 4)
+        assertTrue(l1.similar(l2))
+
+        val lst4 = ListaConNodosDoblementeEncadenados(6, 1, 2, 11, 8, 6, 4, 3, 6, 11, 2)
+        println(lst4.posicionDe(2))
+        println(lst4.ultimaPosicionDe(2))
+        lst4.eliminarElemento(11)
+        println(lst4.ultimaPosicionDe(11))
+        println(lst4.posicionDe(11))
+        println(lst4)
+        lst4.eliminarUltimo()
+        println(lst4)
+        println(lst4.posicionDe(2))
+        println(lst4.ultimaPosicionDe(2))
+        lst4[1] = 11
+        println(lst4)
+        assertTrue(3 in lst4)
+
+        val lst5 = ListaConNodosDoblementeEncadenados<Int>()
+        for (i in lst4.indices) {
+            lst5.agregarAlPrincipio(lst4[i])
+        }
+        println(lst4)
+        println(lst5)
+        lst5.agregarEnPosicion(2, 7)
+        lst5.agregarEnPosicion(5, -120)
+        println(lst5)
+        lst5.agregarEnPosicion(0, -20)
+        lst5.agregarEnPosicion(120, 8)
+        println(lst5)
+
+        var lst6 = lst5 + 12
+        println(lst6)
+        lst6 += 23
+        println(lst6)
+        val (a, b) = lst6
+        println("$a, $b")
+    }
 }
