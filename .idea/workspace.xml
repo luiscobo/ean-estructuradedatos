@@ -9,12 +9,9 @@
     <option name="autoReloadType" value="SELECTIVE" />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="6bbf69c3-c92c-4814-a03f-267974052390" name="Changes" comment="Versión 0.0.2 = Listas y Listas implementadas con arreglos">
-      <change afterPath="$PROJECT_DIR$/.idea/codeStyles/codeStyleConfig.xml" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/ean/estructuradedatos/ListaConNodosDoblementeEncadenados.kt" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/.idea/inspectionProfiles/Project_Default.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/inspectionProfiles/Project_Default.xml" afterDir="false" />
+    <list default="true" id="6bbf69c3-c92c-4814-a03f-267974052390" name="Changes" comment="Versión 0.0.3 = Listas con nodos doblemente encadenados">
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/ean/estructuradedatos/ListaConArreglos.kt" beforeDir="false" afterPath="$PROJECT_DIR$/src/ean/estructuradedatos/ListaConArreglos.kt" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/ean/estructuradedatos/Lista.kt" beforeDir="false" afterPath="$PROJECT_DIR$/src/ean/estructuradedatos/Lista.kt" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/test/ean/estructuradedatos/ArregloTest.kt" beforeDir="false" afterPath="$PROJECT_DIR$/test/ean/estructuradedatos/ArregloTest.kt" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
@@ -54,6 +51,7 @@
     "JUnit.ArregloTest.executor": "Run",
     "JUnit.ArregloTest.prueba2.executor": "Run",
     "JUnit.ArregloTest.prueba3.executor": "Run",
+    "JUnit.ArregloTest.prueba4.executor": "Run",
     "Repository.Attach.Annotations": "false",
     "Repository.Attach.JavaDocs": "false",
     "Repository.Attach.Sources": "false",
@@ -84,7 +82,7 @@
       <recent name="ean.estructuradedatos" />
     </key>
   </component>
-  <component name="RunManager" selected="JUnit.ArregloTest.prueba3">
+  <component name="RunManager" selected="JUnit.ArregloTest.prueba4">
     <configuration name="ArregloTest (1)" type="JUnit" factoryName="JUnit" temporary="true" nameIsGenerated="true">
       <module name="newEanLib" />
       <extension name="coverage">
@@ -147,8 +145,25 @@
         <option name="Make" enabled="true" />
       </method>
     </configuration>
+    <configuration name="ArregloTest.prueba4" type="JUnit" factoryName="JUnit" temporary="true" nameIsGenerated="true">
+      <module name="newEanLib" />
+      <extension name="coverage">
+        <pattern>
+          <option name="PATTERN" value="ean.estructuradedatos.*" />
+          <option name="ENABLED" value="true" />
+        </pattern>
+      </extension>
+      <option name="PACKAGE_NAME" value="ean.estructuradedatos" />
+      <option name="MAIN_CLASS_NAME" value="ean.estructuradedatos.ArregloTest" />
+      <option name="METHOD_NAME" value="prueba4" />
+      <option name="TEST_OBJECT" value="method" />
+      <method v="2">
+        <option name="Make" enabled="true" />
+      </method>
+    </configuration>
     <recent_temporary>
       <list>
+        <item itemvalue="JUnit.ArregloTest.prueba4" />
         <item itemvalue="JUnit.ArregloTest.prueba3" />
         <item itemvalue="JUnit.ArregloTest.prueba2" />
         <item itemvalue="JUnit.ArregloTest (1)" />
@@ -175,7 +190,8 @@
       <workItem from="1703375744493" duration="10884000" />
       <workItem from="1703388867480" duration="12000" />
       <workItem from="1703524409585" duration="12407000" />
-      <workItem from="1703624998490" duration="10472000" />
+      <workItem from="1703624998490" duration="10635000" />
+      <workItem from="1703967713838" duration="2871000" />
     </task>
     <task id="LOCAL-00001" summary="Versión 0.0.1 = Arreglos">
       <option name="closed" value="true" />
@@ -201,7 +217,15 @@
       <option name="project" value="LOCAL" />
       <updated>1703550636031</updated>
     </task>
-    <option name="localTasksCounter" value="4" />
+    <task id="LOCAL-00004" summary="Versión 0.0.3 = Listas con nodos doblemente encadenados">
+      <option name="closed" value="true" />
+      <created>1703643039377</created>
+      <option name="number" value="00004" />
+      <option name="presentableId" value="LOCAL-00004" />
+      <option name="project" value="LOCAL" />
+      <updated>1703643039377</updated>
+    </task>
+    <option name="localTasksCounter" value="5" />
     <servers />
   </component>
   <component name="TypeScriptGeneratedFilesManager">
@@ -211,6 +235,7 @@
     <option name="ADD_EXTERNAL_FILES_SILENTLY" value="true" />
     <MESSAGE value="Versión 0.0.1 = Arreglos" />
     <MESSAGE value="Versión 0.0.2 = Listas y Listas implementadas con arreglos" />
-    <option name="LAST_COMMIT_MESSAGE" value="Versión 0.0.2 = Listas y Listas implementadas con arreglos" />
+    <MESSAGE value="Versión 0.0.3 = Listas con nodos doblemente encadenados" />
+    <option name="LAST_COMMIT_MESSAGE" value="Versión 0.0.3 = Listas con nodos doblemente encadenados" />
   </component>
 </project>

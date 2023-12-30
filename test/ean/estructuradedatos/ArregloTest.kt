@@ -184,4 +184,13 @@ class ArregloTest {
         val (a, b) = lst6
         println("$a, $b")
     }
+
+    @Test
+    fun prueba4() {
+        val miLista: Lista<Int> = Lista.crear()
+        miLista.agregarAlFinal(10)
+        miLista.agregarAlPrincipio(11)
+        miLista.agregarEnPosicion(1, 25)
+        println(miLista)
+    }
 }

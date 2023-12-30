@@ -187,6 +187,40 @@ interface Lista<T> {
     operator fun component4(): T
     operator fun component5(): T
 
+    /**
+     * Operaciones con listas
+     */
+    companion object {
+        private const val IMPLEMENTACION_LISTA_ARREGLOS = "ListasConArreglos"
+        private const val IMPLEMENTACION_LISTA_NODOS = "ListasConNodos"
+
+        private var implementacionListaPorDefecto: String? = IMPLEMENTACION_LISTA_NODOS
+
+        fun configurarImplementacionLista(implementacion: String) {
+            implementacionListaPorDefecto = implementacion
+        }
+
+        private fun <T> crearListaDeAcuerdoConImplementacion(): Lista<T>? {
+            when (implementacionListaPorDefecto) {
+                IMPLEMENTACION_LISTA_ARREGLOS -> return ListaConArreglos<T>()
+                IMPLEMENTACION_LISTA_NODOS -> return ListaConNodosDoblementeEncadenados<T>()
+            }
+            return null
+        }
+
+
+        fun <T> crear(vararg elements: T): Lista<T> {
+            val result: Lista<T>? = crearListaDeAcuerdoConImplementacion()
+            if (result != null) {
+                for (elem in elements) {
+                    result.agregarAlFinal(elem)
+                }
+                return result
+            }
+            throw IllegalArgumentException("No hay una implementación por defecto para la lista!")
+        }
+    }
+
 }
 
 fun <T> recorrer(lista: Lista<T>, accion: (T) -> Unit): Unit {
