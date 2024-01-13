@@ -13,6 +13,7 @@
 package ean.estructuradedatos
 
 import java.util.*
+import javax.naming.OperationNotSupportedException
 
 /**
  * Un arreglo es una estructura de datos que permite almacenar una colección de elementos del mismo
@@ -22,7 +23,7 @@ import java.util.*
  */
 
 /* $Version = GitHub(1.0) */
-class Arreglo<T>(tamañoInicial: Int) {
+class Arreglo<T>(tamañoInicial: Int)  {
 
     // -----------------------------------------------------------------
     // Atributos
@@ -232,6 +233,104 @@ class Arreglo<T>(tamañoInicial: Int) {
 
     operator fun component5(): T {
         return get(4)
+    }
+
+    //--------------------------------------------------------------
+    // El iterador sobre el arreglo
+    //--------------------------------------------------------------
+    fun iterador(): Iterador<T> {
+        return object: Iterador<T> {
+            // Atributos
+            private var posActual: Int = -1
+
+            // Propiedades
+            override var info: T
+                get() {
+                    if (posActual in indices) {
+                        return datos[posActual]!!
+                    }
+                    throw IllegalArgumentException()
+                }
+                set(value) {
+                    if (posActual in indices) {
+                        datos[posActual] = value
+                    }
+                    else {
+                        throw IllegalArgumentException()
+                    }
+                }
+
+            override val posicionActual: Int
+                get() = if (posActual in indices) posActual else -1
+
+            override fun ubicarAlPrincipio() {
+                posActual = if (tam == 0) {
+                    -1
+                }
+                else {
+                    0
+                }
+            }
+
+            override fun ubicarAlFinal() {
+                posActual = if (tam == 0) {
+                    -1
+                }
+                else {
+                    tam - 1
+                }
+            }
+
+            override fun ubicarEnLaPosicion(posicion: Int) {
+                posActual = if (tam == 0 || posicion !in indices) {
+                    -1
+                }
+                else {
+                    posicion
+                }
+            }
+
+            override fun tieneSiguiente(): Boolean = posActual in indices
+
+            override fun tieneAnterior(): Boolean = posActual in indices
+
+            override fun avanzar(): Iterador<T> {
+                if (posActual < 0 || posActual >= tam) {
+                    posActual = -1
+                }
+                else {
+                    posActual++
+                }
+                return this
+            }
+
+            override fun retroceder(): Iterador<T> {
+                if (posActual < 0 || posActual >= tam) {
+                    posActual = -1
+                }
+                else {
+                    posActual--
+                }
+                return this
+            }
+
+            override fun eliminar() {
+                throw OperationNotSupportedException("No se puede eliminar de un arreglo")
+            }
+
+            override fun cambiar(nuevoElemento: T) {
+                info = nuevoElemento
+            }
+
+            override fun agregarAntes(elemento: T) {
+                throw OperationNotSupportedException("No se puede eliminar de un arreglo")
+            }
+
+            override fun agregarDespues(elemento: T) {
+                throw OperationNotSupportedException("No se puede eliminar de un arreglo")
+            }
+
+        }
     }
 
 }

@@ -188,6 +188,11 @@ interface Lista<T> {
     operator fun component5(): T
 
     /**
+     * Manejo del iterador
+     */
+    fun iterador(): Iterador<T>
+
+    /**
      * Operaciones con listas
      */
     companion object {

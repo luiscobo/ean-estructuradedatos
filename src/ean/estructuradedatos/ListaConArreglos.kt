@@ -148,6 +148,115 @@ class ListaConArreglos<T>() : Lista<T> {
 
     override fun component5(): T = get(4)
 
+    override fun iterador(): Iterador<T> {
+        return object : Iterador<T> {
+            private var posActual: Int = -1
+            private val lista = this@ListaConArreglos
+
+            override var info: T
+                get() {
+                    if (posActual in indices) {
+                        return lista.info[posActual]
+                    }
+                    throw IllegalArgumentException()
+                }
+                set(value) {
+                    if (posActual in indices) {
+                        lista.info[posActual] = value
+                    }
+                    else {
+                        throw IllegalArgumentException()
+                    }
+                }
+            override val posicionActual: Int
+                get() = if (posActual in indices) posActual else -1
+
+            override fun ubicarAlPrincipio() {
+                posActual = if (tam == 0) {
+                    -1
+                }
+                else {
+                    0
+                }
+            }
+
+            override fun ubicarAlFinal() {
+                posActual = if (tam == 0) {
+                    -1
+                }
+                else {
+                    ultimaPosicion
+                }
+            }
+
+            override fun ubicarEnLaPosicion(posicion: Int) {
+                posActual = if (tam == 0 || posicion !in indices) {
+                    -1
+                }
+                else {
+                    posicion
+                }
+            }
+
+            override fun tieneSiguiente(): Boolean = posActual in indices
+
+            override fun tieneAnterior(): Boolean = posActual in indices
+
+            override fun avanzar(): Iterador<T> {
+                if (posActual < 0 || posActual >= tam) {
+                    posActual = -1
+                }
+                else {
+                    posActual++
+                }
+                return this
+            }
+
+            override fun retroceder(): Iterador<T> {
+                if (posActual < 0 || posActual >= tam) {
+                    posActual = -1
+                }
+                else {
+                    posActual--
+                }
+                return this
+            }
+
+            override fun eliminar() {
+                if (posActual in indices) {
+                    lista.eliminarElementoEnPosicion(posActual)
+                    if (posActual >= tam) {
+                        posActual = -1
+                    }
+                }
+            }
+
+            override fun cambiar(nuevoElemento: T) {
+                info = nuevoElemento
+            }
+
+            override fun agregarAntes(elemento: T) {
+                if (posActual in indices) {
+                    lista.agregarEnPosicion(posActual, elemento)
+                }
+                else {
+                    throw IllegalArgumentException()
+                }
+            }
+
+            override fun agregarDespues(elemento: T) {
+                if (posActual in indices) {
+                    lista.agregarEnPosicion(posActual + 1, elemento)
+                    posActual++
+                }
+                else {
+                    throw IllegalArgumentException()
+                }
+            }
+
+        }
+    }
+
     override fun ultimaPosicionDe(elemento: T): Int {
         for (i in ultimaPosicion downTo 0) {
             if (info[i] == elemento) {

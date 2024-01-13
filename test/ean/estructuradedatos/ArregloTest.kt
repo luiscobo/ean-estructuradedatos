@@ -44,6 +44,28 @@ class ArregloTest {
         val (x, y, z) = a
         println("$x, $y, $z, $a")
         println("Prueba superada 👍")
+
+        var iter: Iterador<Int> = a.iterador()
+        iter.ubicarAlPrincipio()
+        while (iter.tieneSiguiente()) {
+            print("(${iter.posicionActual}: ${iter.info}) ")
+            iter.info += 1
+            iter.avanzar()
+        }
+        println()
+        iter.ubicarAlFinal()
+        while (iter.tieneAnterior()) {
+            print("(${iter.posicionActual}: ${iter.info}) ")
+            iter.retroceder()
+        }
+        println()
+
+        iter.ubicarEnLaPosicion(3)
+        while (iter.tieneAnterior()) {
+            print("(${iter.posicionActual}: ${iter.info}) ")
+            iter.retroceder()
+        }
+        println()
     }
 
     @Test
@@ -125,6 +147,40 @@ class ArregloTest {
         val l1 = ListaConArreglos(1, 4, 2, 3)
         val l2 = ListaConArreglos(1, 2, 3, 4)
         assertTrue(l1.similar(l2))
+
+        var iter: Iterador<Int> = lst7.iterador()
+        iter.ubicarAlPrincipio()
+        while (iter.tieneSiguiente()) {
+            println("${iter.posicionActual}: ${iter.info}")
+            iter++
+        }
+
+        iter.ubicarAlFinal()
+        while (iter.tieneAnterior()) {
+            print("${iter.posicionActual}: ${iter.info} ")
+            iter--
+        }
+        println()
+
+        println(lst7)
+        iter.ubicarAlPrincipio()
+        while (iter.tieneSiguiente()) {
+            if (iter.info % 2 == 0) {
+                iter.agregarDespues(iter.info - 1)
+            }
+            iter.avanzar()
+        }
+        println(lst7)
+        iter.ubicarAlPrincipio()
+        while (iter.tieneSiguiente()) {
+            if (iter.info % 2 == 0) {
+                iter.eliminar()
+            }
+            else {
+                iter++
+            }
+        }
+        println(lst7)
     }
 
     @Test
@@ -183,6 +239,20 @@ class ArregloTest {
         println(lst6)
         val (a, b) = lst6
         println("$a, $b")
+
+        var iter: Iterador<Int> = lst4.iterador()
+        iter.ubicarAlPrincipio()
+        while (iter.tieneSiguiente()) {
+            println("${iter.posicionActual}: ${iter.info}")
+            iter++
+        }
+
+        iter.ubicarAlFinal()
+        while (iter.tieneAnterior()) {
+            println("${iter.posicionActual}: ${iter.info} ")
+            iter--
+        }
+        println()
     }
 
     @Test
@@ -192,5 +262,52 @@ class ArregloTest {
         miLista.agregarAlPrincipio(11)
         miLista.agregarEnPosicion(1, 25)
         println(miLista)
+    }
+
+    @Test
+    fun prueba5() {
+        val lst4 = ListaConNodosDoblementeEncadenados(6, 1, 2, 11, 8, 6, 4, 3, 6, 11, 2)
+        var iter: Iterador<Int> = lst4.iterador()
+        iter.ubicarAlPrincipio()
+        while (iter.tieneSiguiente()) {
+            println("${iter.posicionActual}: ${iter.info}")
+            iter++
+        }
+
+        iter.ubicarAlFinal()
+        while (iter.tieneAnterior()) {
+            println("${iter.posicionActual}: ${iter.info} ")
+            iter--
+        }
+        println()
+
+        iter.ubicarAlPrincipio()
+        while (iter.tieneSiguiente()) {
+            if (iter.info % 2 == 0) {
+                iter.agregarDespues(iter.info - 1)
+            }
+            iter.avanzar()
+        }
+        println(lst4)
+
+        iter.ubicarAlPrincipio()
+        while (iter.tieneSiguiente()) {
+            if (iter.info % 2 != 0) {
+                iter.agregarAntes(iter.info - 1)
+            }
+            iter.avanzar()
+        }
+        println(lst4)
+
+        iter.ubicarAlPrincipio()
+        while (iter.tieneSiguiente()) {
+            if (iter.info % 2 == 0) {
+                iter.eliminar()
+            }
+            else {
+                iter++
+            }
+        }
+        println(lst4)
     }
 }

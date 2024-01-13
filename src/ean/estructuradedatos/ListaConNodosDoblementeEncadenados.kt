@@ -12,19 +12,21 @@
 
 package ean.estructuradedatos
 
+//-------------------------------------------------
+// Esta clase implementa las operaciones de un nodo
+// de la lista doblemente encadenada
+//-------------------------------------------------
+private class Nodo<T>(var info: T) {
+    // Atributos
+    var sig: Nodo<T>? = null
+    var ant: Nodo<T>? = null
+}
+
 /**
  * Implementación de Listas con el uso de nodos doblemente encadenados
  */
 class ListaConNodosDoblementeEncadenados<T>() : Lista<T> {
-    //-------------------------------------------------
-    // Esta clase implementa las operaciones de un nodo
-    // de la lista doblemente encadenada
-    //-------------------------------------------------
-    private inner class Nodo<T>(var info: T) {
-        // Atributos
-        var sig: Nodo<T>? = null
-        var ant: Nodo<T>? = null
-    }
+
 
     // -----------------------------------------------------------------
     // Atributos
@@ -99,8 +101,8 @@ class ListaConNodosDoblementeEncadenados<T>() : Lista<T> {
         val result = ListaConNodosDoblementeEncadenados<T>()
         var p: Nodo<T>? = prim
         while (p != null) {
-            result.agregarAlFinal(p!!.info)
-            p = p!!.sig
+            result.agregarAlFinal(p.info)
+            p = p.sig
         }
         return result
     }
@@ -156,8 +158,8 @@ class ListaConNodosDoblementeEncadenados<T>() : Lista<T> {
         }
         else {
             var p: Nodo<T>? = obtenerNodoPosicion(posicion)
-            var q = p?.ant
-            var r = p?.sig
+            val q = p?.ant
+            val r = p?.sig
 
             q?.sig = r
             r?.ant = q
@@ -186,6 +188,171 @@ class ListaConNodosDoblementeEncadenados<T>() : Lista<T> {
 
     override fun component5(): T = get(4)
 
+    override fun iterador(): Iterador<T> {
+        return object : Iterador<T> {
+            private var posActual: Int = -1
+            private var actual: Nodo<T>? = null
+
+            override var info: T
+                get() {
+                    if (actual != null) {
+                        return actual!!.info
+                    }
+                    throw IllegalArgumentException()
+                }
+                set(value) {
+                    if (actual != null) {
+                        actual!!.info = value
+                    }
+                    else {
+                        throw IllegalArgumentException()
+                    }
+                }
+            override val posicionActual: Int
+                get() = if (posActual in indices) posActual else -1
+
+            override fun ubicarAlPrincipio() {
+                if (vacia) {
+                    posActual = -1
+                    actual = null
+                }
+                else {
+                    posActual = 0
+                    actual = prim
+                }
+            }
+
+            override fun ubicarAlFinal() {
+                if (vacia) {
+                    posActual = -1
+                    actual = null
+                }
+                else {
+                    posActual = ultimaPosicion
+                    actual = ult
+                }
+            }
+
+            override fun ubicarEnLaPosicion(posicion: Int) {
+                if (vacia || posicion !in indices) {
+                    posActual = -1
+                    actual = null
+                }
+                else {
+                    posActual = 0
+                    actual = prim
+                    while (posActual < posicion) {
+                        posActual++
+                        actual = actual!!.sig
+                    }
+                }
+            }
+
+            override fun tieneSiguiente(): Boolean = actual != null
+
+            override fun tieneAnterior(): Boolean = actual != null
+
+            override fun avanzar(): Iterador<T> {
+                if (actual != null) {
+                    actual = actual!!.sig
+                    posActual++
+                }
+                return this
+            }
+
+            override fun retroceder(): Iterador<T> {
+                if (actual != null) {
+                    actual = actual!!.ant
+                    posActual--
+                }
+                return this
+            }
+
+            override fun eliminar() {
+                if (actual != null) {
+                    when (actual) {
+                        prim -> {
+                            eliminarPrimero()
+                            actual = prim
+                            posActual = if (actual == null) -1 else 0
+                        }
+                        ult -> {
+                            eliminarUltimo()
+                            actual = null
+                            posActual = -1
+                        }
+                        else -> {
+                            val ant = actual!!.ant
+                            actual = actual!!.sig
+                            ant!!.sig = actual
+                            actual!!.ant = ant
+                            numNodos--
+                        }
+                    }
+                }
+                else {
+                    throw IllegalArgumentException()
+                }
+            }
+
+            override fun cambiar(nuevoElemento: T) {
+                if (actual != null) {
+                    actual!!.info = nuevoElemento
+                }
+                else {
+                    throw IllegalArgumentException()
+                }
+            }
+
+            override fun agregarAntes(elemento: T) {
+                if (actual != null) {
+                    if (actual == prim) {
+                        agregarAlPrincipio(elemento)
+                    }
+                    else {
+                        val nodo = Nodo(elemento)
+                        val p: Nodo<T>? = actual!!.ant
+
+                        p?.sig = nodo
+                        nodo.ant = p
+
+                        actual!!.ant = nodo
+                        nodo.sig = actual
+
+                        ++numNodos
+                    }
+                }
+                else {
+                    throw NoSuchElementException()
+                }
+            }
+
+            override fun agregarDespues(elemento: T) {
+                if (actual != null) {
+                    if (actual == ult) {
+                        agregarAlFinal(elemento)
+                    }
+                    else {
+                        val nodo = Nodo(elemento)
+                        val p: Nodo<T>? = actual!!.sig
+
+                        actual!!.sig = nodo
+                        nodo.ant = actual
+
+                        p!!.ant = nodo
+                        nodo.sig = p
+
+                        ++numNodos
+                    }
+                }
+                else {
+                    throw NoSuchElementException()
+                }
+            }
+
+        }
+    }
+
     override fun ultimaPosicionDe(elemento: T): Int {
         var pos = ultimaPosicion
         var p: Nodo<T>? = ult
@@ -195,7 +362,7 @@ class ListaConNodosDoblementeEncadenados<T>() : Lista<T> {
                 return pos
             }
             pos--
-            p = p!!.ant
+            p = p.ant
         }
 
         return NO_EXISTE
@@ -206,11 +373,11 @@ class ListaConNodosDoblementeEncadenados<T>() : Lista<T> {
         var p: Nodo<T>? = prim
 
         while (p != null) {
-            if (p!!.info == elemento) {
+            if (p.info == elemento) {
                 return pos
             }
             pos++
-            p = p!!.sig
+            p = p.sig
         }
 
         return NO_EXISTE
@@ -230,14 +397,14 @@ class ListaConNodosDoblementeEncadenados<T>() : Lista<T> {
                     eliminarUltimo()
                 }
                 else {
-                    val q = p?.ant
-                    val r = p?.sig
+                    val q = p.ant
+                    val r = p.sig
 
                     q?.sig = r
                     r?.ant = q
 
-                    p?.sig = null
-                    p?.ant = null
+                    p.sig = null
+                    p.ant = null
                     p = null
                     numNodos--
                 }
@@ -245,16 +412,16 @@ class ListaConNodosDoblementeEncadenados<T>() : Lista<T> {
         }
     }
 
-    override fun agregarArreglo(arreglo: Arreglo<T>) {
-        for (i in arreglo.indices) {
-            val elem = arreglo[i]
+    override fun agregarArreglo(unArreglo: Arreglo<T>) {
+        for (i in unArreglo.indices) {
+            val elem = unArreglo[i]
             this.agregarAlFinal(elem)
         }
     }
 
-    override fun agregarLista(lista: Lista<T>) {
-        for (i in lista.indices) {
-            val elem = lista[i]
+    override fun agregarLista(otraLista: Lista<T>) {
+        for (i in otraLista.indices) {
+            val elem = otraLista[i]
             this.agregarAlFinal(elem)
         }
     }
@@ -270,8 +437,8 @@ class ListaConNodosDoblementeEncadenados<T>() : Lista<T> {
         }
         else {
             val nodo = Nodo(elemento)
-            var p: Nodo<T>? = obtenerNodoPosicion(posicion)
-            var q: Nodo<T>? = p?.ant
+            val p: Nodo<T>? = obtenerNodoPosicion(posicion)
+            val q: Nodo<T>? = p?.ant
 
             q?.sig = nodo
             nodo.ant = q
@@ -342,7 +509,7 @@ class ListaConNodosDoblementeEncadenados<T>() : Lista<T> {
     override fun contains(elemento: T): Boolean {
         var p: Nodo<T>? = prim
         while (p != null) {
-            if (p!!.info == elemento) {
+            if (p.info == elemento) {
                 return true
             }
             p = p.sig
@@ -360,7 +527,7 @@ class ListaConNodosDoblementeEncadenados<T>() : Lista<T> {
             if (i != tam - 1) {
                 str.append(", ")
             }
-            p = p!!.sig
+            p = p.sig
         }
         str.append("]")
         return str.toString()
@@ -376,10 +543,10 @@ class ListaConNodosDoblementeEncadenados<T>() : Lista<T> {
         var p = prim
         var i = 0
         while (p != null) {
-            if (p!!.info != other[i]) {
+            if (p.info != other[i]) {
                 return false
             }
-            p = p!!.sig
+            p = p.sig
             i++
         }
 
